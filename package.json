@@ -1,0 +1,26 @@
+{
+  "name": "@sangrimlee/figma-plugins",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "prettier --write --cache .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@sangrimlee/eslint-config": "workspace:*",
+    "eslint": "^8.36.0",
+    "prettier": "^2.8.4",
+    "turbo": "^1.8.3",
+    "husky": "^8.0.0"
+  },
+  "packageManager": "pnpm@7.28.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "volta": {
+    "node": "18.15.0"
+  }
+}

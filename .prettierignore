@@ -1,0 +1,7 @@
+.gitignore
+pnpm-lock.yaml
+
+# Build artifacts
+.turbo
+dist
+build
