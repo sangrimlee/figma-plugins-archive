@@ -6,12 +6,12 @@ import { createFigmaColorTheme } from './utils/createColorTheme';
 
 interface Options {
   prefix?: string;
-  addRootVariables?: 'light' | 'dark';
+  addRootVariables?: 'light' | 'dark' | false;
   useOnlyFrequentlyUsed?: boolean;
 }
 
 const figmaColorPlugin = plugin.withOptions<Options>(
-  ({ addRootVariables } = {}) => {
+  ({ addRootVariables = false } = {}) => {
     return ({ addBase }) => {
       if (!addRootVariables) {
         return;
@@ -37,4 +37,5 @@ const figmaColorPlugin = plugin.withOptions<Options>(
     };
   },
 );
+
 export default figmaColorPlugin;
