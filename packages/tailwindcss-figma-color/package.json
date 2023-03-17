@@ -1,0 +1,50 @@
+{
+  "name": "@sangrimlee/tailwindcss-figma-color",
+  "version": "0.0.1",
+  "description": "Add figma color variables to your Tailwind CSS project.",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author": {
+    "name": "sangrimlee",
+    "email": "contact@sangrim.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sangrimlee/figma-plugins.git",
+    "directory": "packages/tailwindcss-figma-color"
+  },
+  "bugs": {
+    "url": "https://github.com/sangrimlee/figma-plugins/issues",
+    "email": "contact@sangrim.dev"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint --fix ./src/**/*.ts",
+    "clean": "rimraf dist .turbo"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.0.0"
+  },
+  "devDependencies": {
+    "@sangrimlee/eslint-config": "workspace:*",
+    "@sangrimlee/tsconfig": "workspace:*",
+    "eslint": "^8.36.0",
+    "rimraf": "^4.4.0",
+    "tailwindcss": "^3.2.7",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
