@@ -2,6 +2,15 @@
   "name": "@sangrimlee/figma-plugins",
   "version": "0.0.0",
   "private": true,
+  "author": {
+    "name": "sangrimlee",
+    "email": "contact@sangrim.dev"
+  },
+  "homepage": "https://github.com/sangrimlee/figma-plugins#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sangrimlee/figma-plugins"
+  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -10,8 +19,6 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@sangrimlee/eslint-config": "workspace:*",
-    "eslint": "^8.36.0",
     "prettier": "^2.8.4",
     "turbo": "^1.8.3",
     "husky": "^8.0.0"
