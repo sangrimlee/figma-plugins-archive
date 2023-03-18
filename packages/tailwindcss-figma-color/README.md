@@ -10,7 +10,7 @@ npm install @sangrimlee/tailwindcss-figma-color
 
 ```js
 // tailwind.config.js
-const figmaColorPlugin = require('@sangrimlee/tailwindcss-figma-color');
+const { figmaColorPlugin } = require('@sangrimlee/tailwindcss-figma-color');
 
 module.exports = {
   content: [],
