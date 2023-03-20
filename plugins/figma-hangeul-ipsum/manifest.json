@@ -1,0 +1,9 @@
+{
+  "name": "한글입숨",
+  "id": "1218854890608417355",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "main": "./dist/code.js",
+  "ui": "./dist/index.html",
+  "capabilities": ["textreview"]
+}

@@ -1,0 +1,8 @@
+{
+  "extends": "@sangrimlee/tsconfig/figma-plugin.json",
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@figma"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
