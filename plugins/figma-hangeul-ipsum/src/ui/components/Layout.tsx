@@ -16,6 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
           href="https://github.com/sangrimlee/figma-plugins"
           target="_blank"
           className="text-figma-text-secondary hover:text-figma-text-secondary-hover hover:bg-figma-bg-secondary flex items-center font-medium transition-colors"
+          rel="noreferrer"
         >
           <GitHubLogoIcon className="mr-1.5 h-5 w-5" />
           <span>Github</span>

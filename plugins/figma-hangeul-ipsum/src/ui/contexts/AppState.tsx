@@ -1,5 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { GenerateFormState, PluginMessageEvent, PluginMessageType } from '../../shared/types';
+
+import { PluginMessageType } from '../../shared/enum';
+import type { GenerateFormState, PluginMessageEvent } from '../../shared/types';
 
 interface AppState {
   isSelectedTextNode: boolean;
@@ -25,10 +27,10 @@ interface AppStateProviderProps {
 export const AppStateProvider = ({ children }: AppStateProviderProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isSelectedTextNode, setIsSelectedTextNode] = useState<boolean>(false);
-  const [formState, _setFormState] = useState<GenerateFormState>({ unit: 'word', count: '1' });
+  const [formState, setOriginFormState] = useState<GenerateFormState>({ unit: 'word', count: '1' });
 
   const setFormState = useCallback(<K extends keyof GenerateFormState>(key: K, value: GenerateFormState[K]) => {
-    _setFormState((prev) => ({
+    setOriginFormState((prev) => ({
       ...prev,
       [key]: value,
     }));
@@ -45,7 +47,6 @@ export const AppStateProvider = ({ children }: AppStateProviderProps) => {
 
   useEffect(() => {
     if (!isLoading) {
-      console.log(formState);
       parent.postMessage(
         {
           pluginMessage: { type: PluginMessageType.ON_CHANGE_FORM_STATE, formState },
@@ -61,11 +62,13 @@ export const AppStateProvider = ({ children }: AppStateProviderProps) => {
         case PluginMessageType.SET_INITIAL_STATE:
           setIsLoading(false);
           setIsSelectedTextNode(msg.isSelectedTextNode);
-          _setFormState(msg.formState);
-          return;
-        case PluginMessageType.SELECTION_CHANGE:
+          setOriginFormState(msg.formState);
+          break;
+        case PluginMessageType.ON_CHANGE_SELECTION:
           setIsSelectedTextNode(msg.isSelectedTextNode);
-          return;
+          break;
+        default:
+          break;
       }
     };
     return () => {

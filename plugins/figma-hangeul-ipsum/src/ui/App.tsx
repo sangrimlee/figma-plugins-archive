@@ -1,7 +1,7 @@
-import Form from './pages/Form';
 import Layout from './components/Layout';
-import Info from './pages/Info';
 import { useAppState } from './contexts/AppState';
+import Form from './pages/Form';
+import Info from './pages/Info';
 
 const App = () => {
   const { isSelectedTextNode } = useAppState();

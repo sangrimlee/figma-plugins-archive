@@ -1,5 +1,4 @@
-import { PluginMessageType } from '../../shared/types';
-
+import { PluginMessageType } from '../../shared/enum';
 import * as RadioGroup from '../components/RadioGroup';
 import { useAppState } from '../contexts/AppState';
 
@@ -18,15 +17,12 @@ const GENERATE_COUNTS = [
 ];
 
 const Form = () => {
-  const {
-    formState: { unit, count },
-    setFormState,
-  } = useAppState();
+  const { formState, setFormState } = useAppState();
 
   const generate = () => {
     parent.postMessage(
       {
-        pluginMessage: { type: PluginMessageType.CHANGE_TEXT_NODE_CONTENT, content: '생성된 컨텐츠' },
+        pluginMessage: { type: PluginMessageType.CHANGE_TEXT_NODE_CONTENT, formState },
       },
       'https://www.figma.com',
     );
@@ -36,7 +32,7 @@ const Form = () => {
     <div className="flex flex-col gap-y-5">
       <div>
         <h2 className="mb-2 font-semibold">생성 단위</h2>
-        <RadioGroup.Root name="generate-unit" value={unit} onValueChange={(v) => setFormState('unit', v)}>
+        <RadioGroup.Root name="generate-unit" value={formState.unit} onValueChange={(v) => setFormState('unit', v)}>
           {GENREATE_UNITS.map(({ value, label }) => (
             <RadioGroup.Item value={value} label={label} />
           ))}
@@ -44,7 +40,7 @@ const Form = () => {
       </div>
       <div>
         <h2 className="mb-2 font-semibold">생성 개수</h2>
-        <RadioGroup.Root name="generate-count" value={count} onValueChange={(v) => setFormState('count', v)}>
+        <RadioGroup.Root name="generate-count" value={formState.count} onValueChange={(v) => setFormState('count', v)}>
           {GENERATE_COUNTS.map(({ value, label }) => (
             <RadioGroup.Item value={value} label={label} />
           ))}

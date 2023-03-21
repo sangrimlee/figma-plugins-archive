@@ -1,16 +1,13 @@
-import { GenerateFormState } from '../../shared/types';
+import type { StorageKey } from '../../shared/enum';
 
-export async function getFormStateFromStroage() {
-  const value = await figma.clientStorage.getAsync('FORM_STATE');
-  if (!value) {
-    return {
-      unit: 'word',
-      count: '1',
-    };
+export async function getClientStorage<T>(key: StorageKey, defaultValue: T) {
+  const value = (await figma.clientStorage.getAsync(key)) as T | undefined;
+  if (value === undefined) {
+    return defaultValue;
   }
-  return value as GenerateFormState;
+  return value;
 }
 
-export function setFormStateStorage(value: GenerateFormState) {
-  return figma.clientStorage.setAsync('FORM_STATE', value);
+export function setClientStorage<T>(key: StorageKey, value: T) {
+  return figma.clientStorage.setAsync(key, value);
 }
