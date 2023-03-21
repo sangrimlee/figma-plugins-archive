@@ -1,4 +1,4 @@
-import type { GenerateFormState } from '../../shared/types';
+import type { GenerateFormState } from '@/shared/types';
 
 export function generateContent({ unit, count }: GenerateFormState) {
   const countNum = parseInt(count, 10);

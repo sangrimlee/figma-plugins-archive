@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
-import { PluginMessageType } from '../../shared/enum';
-import type { GenerateFormState, PluginMessageEvent } from '../../shared/types';
+import { PluginMessageType } from '@/shared/enum';
+import type { GenerateFormState, PluginMessageEvent } from '@/shared/types';
 
 interface AppState {
   isSelectedTextNode: boolean;

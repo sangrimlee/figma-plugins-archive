@@ -1,4 +1,5 @@
-import { PluginMessageType } from '../../shared/enum';
+import { PluginMessageType } from '@/shared/enum';
+
 import * as RadioGroup from '../components/RadioGroup';
 import { useAppState } from '../contexts/AppState';
 

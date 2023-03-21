@@ -1,4 +1,4 @@
-import type { StorageKey } from '../../shared/enum';
+import type { StorageKey } from '@/shared/enum';
 
 export async function getClientStorage<T>(key: StorageKey, defaultValue: T) {
   const value = (await figma.clientStorage.getAsync(key)) as T | undefined;

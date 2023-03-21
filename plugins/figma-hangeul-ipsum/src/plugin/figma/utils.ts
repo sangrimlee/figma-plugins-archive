@@ -1,4 +1,4 @@
-import type { PluginMessage } from '../../shared/types';
+import type { PluginMessage } from '@/shared/types';
 
 export function getSelectedTextNode() {
   return figma.currentPage.selection.filter((node) => node.type === 'TEXT') as TextNode[];

@@ -1,5 +1,6 @@
-import { PluginMessageType, StorageKey } from '../../shared/enum';
-import type { GenerateFormState } from '../../shared/types';
+import { PluginMessageType, StorageKey } from '@/shared/enum';
+import type { GenerateFormState } from '@/shared/types';
+
 import { generateContent } from '../lib/generate';
 import { getClientStorage, setClientStorage } from './storage';
 import { changeTextNodeContent, getIsSelectedTextNode, getSelectedTextNode, postPluginMessage } from './utils';
