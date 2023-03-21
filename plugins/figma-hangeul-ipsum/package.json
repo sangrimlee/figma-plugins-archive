@@ -25,7 +25,9 @@
     "dev:ui": "pnpm build:ui --watch",
     "dev:plugin": "pnpm build:plugin --watch",
     "dev:server": "vite -c ui.config.ts",
-    "dev": "concurrently 'pnpm:dev:ui' 'pnpm:dev:plugin'"
+    "dev": "concurrently 'pnpm:dev:ui' 'pnpm:dev:plugin'",
+    "lint": "eslint --fix './src/**/*.ts*'",
+    "clean": "rimraf .turbo dist"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.2.0",
