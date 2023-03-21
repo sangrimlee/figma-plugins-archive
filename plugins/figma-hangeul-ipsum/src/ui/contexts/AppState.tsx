@@ -2,12 +2,10 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { PluginMessageEvent, PluginMessageType } from '../../shared/types';
 
 interface AppState {
-  textNodes: string[];
   isSelectedTextNode: boolean;
 }
 
 const AppStateContext = createContext<AppState>({
-  textNodes: [],
   isSelectedTextNode: false,
 });
 AppStateContext.displayName = 'AppStateContext';
@@ -19,31 +17,41 @@ interface AppStateProviderProps {
 }
 
 export const AppStateProvider = ({ children }: AppStateProviderProps) => {
-  const [textNodes, setTextNodes] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isSelectedTextNode, setIsSelectedTextNode] = useState<boolean>(false);
 
   const contextValue = useMemo(
     () => ({
-      textNodes,
-      isSelectedTextNode: textNodes.length !== 0,
+      isSelectedTextNode,
     }),
-    [textNodes],
+    [isSelectedTextNode],
   );
 
   useEffect(() => {
-    console.log(textNodes);
-  }, [textNodes]);
+    parent.postMessage(
+      {
+        pluginMessage: { type: PluginMessageType.INIT },
+      },
+      'https://www.figma.com',
+    );
+  }, []);
 
   useEffect(() => {
     onmessage = ({ data: { pluginMessage: msg } }: PluginMessageEvent) => {
-      if (msg.type !== PluginMessageType.SELECTION_CHANGE) {
-        return;
+      switch (msg.type) {
+        case PluginMessageType.SET_INITIAL_STATE:
+          setIsLoading(false);
+          setIsSelectedTextNode(msg.isSelectedTextNode);
+          return;
+        case PluginMessageType.SELECTION_CHANGE:
+          setIsSelectedTextNode(msg.isSelectedTextNode);
+          return;
       }
-      setTextNodes(msg.textNodes);
     };
     return () => {
       onmessage = null;
     };
   }, []);
 
-  return <AppStateContext.Provider value={contextValue}>{children}</AppStateContext.Provider>;
+  return <AppStateContext.Provider value={contextValue}>{!isLoading && children}</AppStateContext.Provider>;
 };

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PluginMessageType } from '../../shared/types';
 
 import * as RadioGroup from '../components/RadioGroup';
 
@@ -20,8 +21,17 @@ const Form = () => {
   const [generateUnit, setGenerateUnit] = useState('word');
   const [generateCount, setGenerateCount] = useState('1');
 
+  const generate = () => {
+    parent.postMessage(
+      {
+        pluginMessage: { type: PluginMessageType.CHANGE_TEXT_NODE_CONTENT, content: '생성된 컨텐츠' },
+      },
+      'https://www.figma.com',
+    );
+  };
+
   return (
-    <form className="flex flex-col gap-y-5">
+    <div className="flex flex-col gap-y-5">
       <div>
         <h2 className="mb-2 font-semibold">생성 단위</h2>
         <RadioGroup.Root name="generate-unit" value={generateUnit} onValueChange={setGenerateUnit}>
@@ -42,11 +52,12 @@ const Form = () => {
         <button
           type="button"
           className="bg-figma-bg-brand text-figma-text-onbrand hover:bg-figma-bg-brand-hover rounded-md px-3 py-2 font-medium leading-none transition-colors"
+          onClick={generate}
         >
           생성
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 
