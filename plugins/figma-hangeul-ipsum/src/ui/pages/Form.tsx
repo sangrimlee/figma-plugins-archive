@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { PluginMessageType } from '../../shared/types';
 
 import * as RadioGroup from '../components/RadioGroup';
+import { useAppState } from '../contexts/AppState';
 
 const GENREATE_UNITS = [
   { value: 'word', label: '단어' },
@@ -18,8 +18,10 @@ const GENERATE_COUNTS = [
 ];
 
 const Form = () => {
-  const [generateUnit, setGenerateUnit] = useState('word');
-  const [generateCount, setGenerateCount] = useState('1');
+  const {
+    formState: { unit, count },
+    setFormState,
+  } = useAppState();
 
   const generate = () => {
     parent.postMessage(
@@ -34,7 +36,7 @@ const Form = () => {
     <div className="flex flex-col gap-y-5">
       <div>
         <h2 className="mb-2 font-semibold">생성 단위</h2>
-        <RadioGroup.Root name="generate-unit" value={generateUnit} onValueChange={setGenerateUnit}>
+        <RadioGroup.Root name="generate-unit" value={unit} onValueChange={(v) => setFormState('unit', v)}>
           {GENREATE_UNITS.map(({ value, label }) => (
             <RadioGroup.Item value={value} label={label} />
           ))}
@@ -42,7 +44,7 @@ const Form = () => {
       </div>
       <div>
         <h2 className="mb-2 font-semibold">생성 개수</h2>
-        <RadioGroup.Root name="generate-count" value={generateCount} onValueChange={setGenerateCount}>
+        <RadioGroup.Root name="generate-count" value={count} onValueChange={(v) => setFormState('count', v)}>
           {GENERATE_COUNTS.map(({ value, label }) => (
             <RadioGroup.Item value={value} label={label} />
           ))}
