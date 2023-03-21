@@ -41,7 +41,7 @@ function randomParagraph(lines: string[]) {
 
 function generatePragraph(source: string, count: number) {
   const lines = source.split(/\n/);
-  return createContent(count, () => randomParagraph(lines), '\n');
+  return createContent(count, () => randomParagraph(lines), '\n\n');
 }
 
 export function generateContent({ unit, count: countStr, source }: GenerateFormState) {
