@@ -6,7 +6,11 @@ import { getClientStorage, setClientStorage } from './storage';
 import { changeTextNodeContent, getIsSelectedTextNode, getSelectedTextNode, postPluginMessage } from './utils';
 
 export async function handleInitMessage() {
-  const formState = await getClientStorage<GenerateFormState>(StorageKey.FORM_STATE, { unit: 'word', count: '1' });
+  const formState = await getClientStorage<GenerateFormState>(StorageKey.FORM_STATE, {
+    unit: 'word',
+    count: '1',
+    source: 'countingStars',
+  });
   const isSelectedTextNode = getIsSelectedTextNode();
   postPluginMessage({
     type: PluginMessageType.SET_INITIAL_STATE,

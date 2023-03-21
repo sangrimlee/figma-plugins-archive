@@ -25,9 +25,13 @@ interface AppStateProviderProps {
 }
 
 export const AppStateProvider = ({ children }: AppStateProviderProps) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isSelectedTextNode, setIsSelectedTextNode] = useState<boolean>(false);
-  const [formState, setOriginFormState] = useState<GenerateFormState>({ unit: 'word', count: '1' });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSelectedTextNode, setIsSelectedTextNode] = useState<boolean>(true);
+  const [formState, setOriginFormState] = useState<GenerateFormState>({
+    unit: 'word',
+    count: '1',
+    source: 'countingStars',
+  });
 
   const setFormState = useCallback(<K extends keyof GenerateFormState>(key: K, value: GenerateFormState[K]) => {
     setOriginFormState((prev) => ({

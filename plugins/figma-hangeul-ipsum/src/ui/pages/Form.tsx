@@ -1,6 +1,7 @@
 import { PluginMessageType } from '@/shared/enum';
 
 import * as RadioGroup from '../components/RadioGroup';
+import * as Select from '../components/Select';
 import { useAppState } from '../contexts/AppState';
 
 const GENREATE_UNITS = [
@@ -15,6 +16,13 @@ const GENERATE_COUNTS = [
   { value: '3', label: '3개' },
   { value: '4', label: '4개' },
   { value: '5', label: '5개' },
+];
+
+const GENERATE_SOURCES = [
+  { value: 'countingStars', label: '별 헤는 밤' },
+  { value: 'mountain', label: '청산도' },
+  { value: 'shower', label: '소나기' },
+  { value: 'star', label: '별' },
 ];
 
 const Form = () => {
@@ -33,6 +41,14 @@ const Form = () => {
     <div className="flex flex-col gap-y-5">
       <div>
         <h2 className="mb-2 font-semibold">생성 단위</h2>
+        <Select.Root name="generate-source" value={formState.source} onValueChange={(v) => setFormState('source', v)}>
+          {GENERATE_SOURCES.map(({ value, label }) => (
+            <Select.Item value={value}>{label}</Select.Item>
+          ))}
+        </Select.Root>
+      </div>
+      <div>
+        <h2 className="mb-2 font-semibold">생성 단위</h2>
         <RadioGroup.Root name="generate-unit" value={formState.unit} onValueChange={(v) => setFormState('unit', v)}>
           {GENREATE_UNITS.map(({ value, label }) => (
             <RadioGroup.Item value={value} label={label} />
@@ -47,7 +63,7 @@ const Form = () => {
           ))}
         </RadioGroup.Root>
       </div>
-      <div className="mt-4 flex justify-end">
+      <div className="mt-1">
         <button
           type="button"
           className="bg-figma-bg-brand text-figma-text-onbrand hover:bg-figma-bg-brand-hover rounded-md px-3 py-2 font-medium leading-none transition-colors"

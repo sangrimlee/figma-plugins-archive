@@ -3,6 +3,7 @@ import type { PluginMessageType } from './enum';
 export interface GenerateFormState {
   unit: string;
   count: string;
+  source: string;
 }
 
 export type PluginMessage =
