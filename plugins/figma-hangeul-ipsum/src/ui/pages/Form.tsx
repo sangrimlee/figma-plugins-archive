@@ -38,35 +38,41 @@ const Form = () => {
   };
 
   return (
-    <div className="flex flex-col gap-y-5">
-      <div>
-        <h2 className="mb-2 font-semibold">생성 단위</h2>
-        <Select.Root name="generate-source" value={formState.source} onValueChange={(v) => setFormState('source', v)}>
-          {GENERATE_SOURCES.map(({ value, label }) => (
-            <Select.Item value={value}>{label}</Select.Item>
-          ))}
-        </Select.Root>
+    <div className="mt-2 flex h-full w-full flex-col justify-between">
+      <div className="flex flex-col gap-y-6">
+        <div>
+          <h2 className="mb-2.5 font-semibold">텍스트 소스</h2>
+          <Select.Root name="generate-source" value={formState.source} onValueChange={(v) => setFormState('source', v)}>
+            {GENERATE_SOURCES.map(({ value, label }) => (
+              <Select.Item value={value}>{label}</Select.Item>
+            ))}
+          </Select.Root>
+        </div>
+        <div>
+          <h2 className="mb-2.5 font-semibold">생성 단위</h2>
+          <RadioGroup.Root name="generate-unit" value={formState.unit} onValueChange={(v) => setFormState('unit', v)}>
+            {GENREATE_UNITS.map(({ value, label }) => (
+              <RadioGroup.Item value={value} label={label} />
+            ))}
+          </RadioGroup.Root>
+        </div>
+        <div>
+          <h2 className="mb-2.5 font-semibold">생성 개수</h2>
+          <RadioGroup.Root
+            name="generate-count"
+            value={formState.count}
+            onValueChange={(v) => setFormState('count', v)}
+          >
+            {GENERATE_COUNTS.map(({ value, label }) => (
+              <RadioGroup.Item value={value} label={label} />
+            ))}
+          </RadioGroup.Root>
+        </div>
       </div>
-      <div>
-        <h2 className="mb-2 font-semibold">생성 단위</h2>
-        <RadioGroup.Root name="generate-unit" value={formState.unit} onValueChange={(v) => setFormState('unit', v)}>
-          {GENREATE_UNITS.map(({ value, label }) => (
-            <RadioGroup.Item value={value} label={label} />
-          ))}
-        </RadioGroup.Root>
-      </div>
-      <div>
-        <h2 className="mb-2 font-semibold">생성 개수</h2>
-        <RadioGroup.Root name="generate-count" value={formState.count} onValueChange={(v) => setFormState('count', v)}>
-          {GENERATE_COUNTS.map(({ value, label }) => (
-            <RadioGroup.Item value={value} label={label} />
-          ))}
-        </RadioGroup.Root>
-      </div>
-      <div className="mt-1">
+      <div className="py-10">
         <button
           type="button"
-          className="bg-figma-bg-brand text-figma-text-onbrand hover:bg-figma-bg-brand-hover rounded-md px-3 py-2 font-medium leading-none transition-colors"
+          className="bg-figma-bg-brand text-figma-text-onbrand hover:bg-figma-bg-brand-hover w-full rounded-md py-3 font-medium leading-none transition-colors"
           onClick={generate}
         >
           생성

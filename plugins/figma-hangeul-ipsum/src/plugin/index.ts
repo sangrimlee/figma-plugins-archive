@@ -8,7 +8,7 @@ import {
   handleOnChangeFormStateMessage,
 } from './figma/message';
 
-figma.showUI(__html__, { title: manifest.name, themeColors: true, width: 440, height: 440 });
+figma.showUI(__html__, { title: manifest.name, themeColors: true, width: 440, height: 512 });
 
 figma.on('selectionchange', handleChangeSelection);
 
