@@ -25,8 +25,8 @@ interface AppStateProviderProps {
 }
 
 export const AppStateProvider = ({ children }: AppStateProviderProps) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSelectedTextNode, setIsSelectedTextNode] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isSelectedTextNode, setIsSelectedTextNode] = useState<boolean>(false);
   const [formState, setOriginFormState] = useState<GenerateFormState>({
     unit: 'word',
     count: '1',
