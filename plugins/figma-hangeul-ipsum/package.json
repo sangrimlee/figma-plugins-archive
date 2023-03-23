@@ -40,6 +40,7 @@
     "@figma/plugin-typings": "^1.62.0",
     "@sangrimlee/eslint-config": "workspace:*",
     "@sangrimlee/tailwindcss-figma-color": "workspace:*",
+    "@sangrimlee/vite-config": "workspace:*",
     "@sangrimlee/tsconfig": "workspace:*",
     "@types/node": "^18.15.3",
     "@types/react": "^18.0.28",

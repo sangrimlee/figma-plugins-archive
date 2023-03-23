@@ -5,7 +5,7 @@
     "paths": {
       "@/shared/*": ["./src/shared/*"]
     },
-    "typeRoots": ["./node_modules/@figma"]
+    "typeRoots": ["./node_modules/@figma", "./node_modules/@types"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

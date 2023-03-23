@@ -1,19 +1,3 @@
-import path from 'path';
+import { figmaPluginConfig } from '@sangrimlee/vite-config';
 
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
-
-export default defineConfig({
-  plugins: [tsconfigPaths()],
-  build: {
-    lib: {
-      name: 'plugin',
-      entry: path.resolve(__dirname, 'src', 'plugin', 'index.ts'),
-      formats: ['es'],
-      fileName: () => 'code.js',
-    },
-    outDir: path.resolve(__dirname, 'dist'),
-    emptyOutDir: false,
-    minify: 'esbuild',
-  },
-});
+export default figmaPluginConfig();
