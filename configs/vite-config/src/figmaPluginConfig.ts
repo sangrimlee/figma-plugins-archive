@@ -18,7 +18,7 @@ export const figmaPluginConfig = ({
       lib: {
         name: 'plugin',
         entry: path.join(process.cwd(), entry),
-        formats: ['es'],
+        formats: ['iife'],
         fileName: () => 'code.js',
       },
       target: 'es6',
