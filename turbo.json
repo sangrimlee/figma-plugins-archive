@@ -7,6 +7,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "test": {
+      "cache": true
+    },
     "dev": {
       "cache": false
     },
