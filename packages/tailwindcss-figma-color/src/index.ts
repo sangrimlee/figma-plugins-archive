@@ -40,7 +40,7 @@ interface Options {
   useOnlyFrequentlyUsed?: boolean;
 }
 
-const figmaColorPlugin = plugin.withOptions<Options>(
+export const figmaColorPlugin = plugin.withOptions<Options>(
   ({ addRootVariables = false } = {}) => {
     return ({ addBase }) => {
       if (!addRootVariables) {
@@ -67,5 +67,3 @@ const figmaColorPlugin = plugin.withOptions<Options>(
     };
   },
 );
-
-export default figmaColorPlugin;
