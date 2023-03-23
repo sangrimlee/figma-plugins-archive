@@ -1,7 +1,9 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-  extends: ['airbnb', 'airbnb-typescript', 'airbnb/hooks', '@sangrim.dev/eslint-config'],
+  extends: ['airbnb', 'airbnb-typescript', 'airbnb/hooks', '@sangrimlee/eslint-config'],
   rules: {
+    'no-param-reassign': 'off',
+    'no-restricted-globals': 'off',
     'react/no-danger': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',

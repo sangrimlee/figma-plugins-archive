@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "files": [
-    "base.json"
+    "base.json",
+    "figma-plugin.json"
   ]
 }

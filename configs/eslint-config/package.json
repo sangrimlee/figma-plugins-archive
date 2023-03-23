@@ -5,8 +5,7 @@
   "main": "index.js",
   "exports": {
     ".": "./index.js",
-    "./react": "./react.js",
-    "./typescript": "./typescript.js"
+    "./figma-plugin": "./figma-plugin.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.55.0",

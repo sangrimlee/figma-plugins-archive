@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "./base.json",
+  "Display": "Figma Plugin",
+  "compilerOptions": {
+    "allowJs": false,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.iterable", "ESNext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": false
+  }
+}

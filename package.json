@@ -15,13 +15,15 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "clean": "turbo run clean",
     "format": "prettier --write --cache .",
     "prepare": "husky install"
   },
   "devDependencies": {
+    "husky": "^8.0.0",
     "prettier": "^2.8.4",
-    "turbo": "^1.8.3",
-    "husky": "^8.0.0"
+    "prettier-plugin-tailwindcss": "^0.2.5",
+    "turbo": "^1.8.3"
   },
   "packageManager": "pnpm@7.28.0",
   "engines": {
