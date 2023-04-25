@@ -7,3 +7,9 @@
     @apply bg-figma-bg text-figma-text antialiased;
   }
 }
+
+@layer components {
+  .content-area {
+    @apply px-5;
+  }
+}

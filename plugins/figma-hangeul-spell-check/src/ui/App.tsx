@@ -1,5 +1,7 @@
+import { Layout } from './components/Layout';
+
 const App = () => {
-  return <h1>한글 맞춤</h1>;
+  return <Layout>한글 맞춤</Layout>;
 };
 
 export default App;
