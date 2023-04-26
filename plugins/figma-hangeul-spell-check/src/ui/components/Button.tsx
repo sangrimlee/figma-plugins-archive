@@ -29,12 +29,14 @@ interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
   size?: keyof typeof buttonSizes;
   variant?: keyof typeof buttonVariants;
   isLoading?: boolean;
+  fullWidth?: boolean;
 }
 
 export const Button = ({
   size = 'md',
   variant = 'brand',
   isLoading = false,
+  fullWidth = false,
   children,
   className,
   disabled,
@@ -49,6 +51,7 @@ export const Button = ({
         buttonVariants[variant],
         'inline-flex items-center justify-center font-semibold transition-colors',
         'disabled:bg-figma-bg-disabled disabled:text-figma-text-disabled disabled:pointer-events-none',
+        { 'w-full': fullWidth },
       )}
       disabled={disabled || isLoading}
       {...props}
