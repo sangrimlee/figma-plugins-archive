@@ -3,6 +3,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import { PluginMessageType } from '@/shared/enum';
 import type { PluginMessageEvent, SpellCheckResult } from '@/shared/types';
 
+import { useContent } from './ContentContext';
+
 interface SpellCheckContextValue {
   characters: string[];
   spellCheckResults: SpellCheckResult[];
@@ -22,6 +24,7 @@ export const useSpellCheck = () => {
 };
 
 export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) => {
+  const { setPrevContent } = useContent();
   const [characters, setCharacters] = useState<string[]>([]);
   const [spellCheckResults, setSpellCheckResults] = useState<SpellCheckResult[]>([]);
 
@@ -40,6 +43,9 @@ export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) 
         case PluginMessageType.SET_CHARACTERS:
           setCharacters(msg.characters);
           break;
+        case PluginMessageType.REPLACE_SPELL_CHECK_SUCCESS:
+          setPrevContent();
+          break;
         default:
           break;
       }
@@ -47,7 +53,7 @@ export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) 
     return () => {
       onmessage = null;
     };
-  }, []);
+  }, [setPrevContent]);
 
   return <SpellCheckContext.Provider value={contextValue}>{children}</SpellCheckContext.Provider>;
 };

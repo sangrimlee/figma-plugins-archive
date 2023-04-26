@@ -18,6 +18,9 @@ export type PluginMessage =
   | {
       type: PluginMessageType.REPLACE_SPELL_CHECK;
       results: SpellCheckResult[];
+    }
+  | {
+      type: PluginMessageType.REPLACE_SPELL_CHECK_SUCCESS;
     };
 
 export type PluginMessageEvent = MessageEvent<{ pluginMessage: PluginMessage; pluginId: string }>;

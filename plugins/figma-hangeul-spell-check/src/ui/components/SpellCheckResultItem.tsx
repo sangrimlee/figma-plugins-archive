@@ -1,10 +1,9 @@
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 
-import { PluginMessageType, SpellCheckReason } from '@/shared/enum';
+import { SpellCheckReason } from '@/shared/enum';
 import type { SpellCheckResult } from '@/shared/types';
 
 import { useSpellCheck } from '../context/SpellCheckContext';
-import { postMessage } from '../lib/message';
 import { Button } from './Button';
 
 const reasonMessage: Record<SpellCheckReason, string> = {
@@ -21,14 +20,6 @@ interface SpellCheckResultItemProps {
 export const SpellCheckResultItem = ({ spellCheckResult }: SpellCheckResultItemProps) => {
   const { removeSpellCheckResult } = useSpellCheck();
 
-  const replaceSpellCheck = () => {
-    postMessage({
-      type: PluginMessageType.REPLACE_SPELL_CHECK,
-      results: [spellCheckResult],
-    });
-    removeSpellCheckResult(origin);
-  };
-
   return (
     <div className="border-figma-border rounded-md border p-3 text-sm">
       <div className="mb-2 flex items-center font-bold">{reasonMessage[spellCheckResult.reason]}</div>
@@ -40,9 +31,6 @@ export const SpellCheckResultItem = ({ spellCheckResult }: SpellCheckResultItemP
         <span className="text-figma-text-brand">{spellCheckResult.checked}</span>
       </p>
       <div className="flex justify-end gap-x-2">
-        <Button variant="brand" size="sm" onClick={replaceSpellCheck}>
-          수정
-        </Button>
         <Button variant="secondary" size="sm" onClick={() => removeSpellCheckResult(origin)}>
           취소
         </Button>

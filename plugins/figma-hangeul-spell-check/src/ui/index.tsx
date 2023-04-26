@@ -11,10 +11,10 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <React.StrictMode>
-    <SpellCheckProvider>
-      <ContentProvider>
+    <ContentProvider>
+      <SpellCheckProvider>
         <App />
-      </ContentProvider>
-    </SpellCheckProvider>
+      </SpellCheckProvider>
+    </ContentProvider>
   </React.StrictMode>,
 );

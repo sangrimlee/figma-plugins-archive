@@ -4,6 +4,7 @@ import { useContent } from './context/ContentContext';
 
 const App = () => {
   const { content } = useContent();
+
   return content !== 'result' ? <SpellCheckTab /> : <SpellCheckResult />;
 };
 

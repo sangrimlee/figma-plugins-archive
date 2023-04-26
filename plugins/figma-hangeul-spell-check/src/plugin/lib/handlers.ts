@@ -55,6 +55,9 @@ export function onChangeContentHandler(content: string) {
 
 export async function onReplaceSpellCheckHandler(results: SpellCheckResult[]) {
   await replaceNodeCharacter(GLOBAL_CONTEXT.textNodes, results);
+  postPluginMessage({
+    type: PluginMessageType.REPLACE_SPELL_CHECK_SUCCESS,
+  });
 }
 
 export async function messageHandler(msg: PluginMessage) {
