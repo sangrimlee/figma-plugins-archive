@@ -2,8 +2,11 @@ import clsx from 'clsx';
 
 import { Button } from '../components/Button';
 import { SpellCheckResultItem } from '../components/SpellCheckResultItem';
+import { useContent } from '../context/ContentContext';
 
 export const SpellCheckResult = () => {
+  const { setPrevContent } = useContent();
+
   return (
     <div>
       <div className="flex h-12 items-center p-4">
@@ -23,7 +26,7 @@ export const SpellCheckResult = () => {
         <Button variant="brand" size="md">
           모두 수정
         </Button>
-        <Button variant="secondary" size="md">
+        <Button variant="secondary" size="md" onClick={setPrevContent}>
           취소
         </Button>
       </div>
