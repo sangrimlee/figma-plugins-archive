@@ -8,11 +8,12 @@ export interface SpellCheckResult {
 
 export type PluginMessage =
   | {
-      type: PluginMessageType.ON_CHANGE_SELECTION;
+      type: PluginMessageType.SET_CHARACTERS;
       characters: string[];
     }
   | {
-      type: PluginMessageType.SPELL_CHECK_PAGE | PluginMessageType.SPELL_CHECK_SELECTION;
+      type: PluginMessageType.ON_CHANGE_CONTENT;
+      content: string;
     };
 
 export type PluginMessageEvent = MessageEvent<{ pluginMessage: PluginMessage; pluginId: string }>;

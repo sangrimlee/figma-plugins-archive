@@ -1,6 +1,9 @@
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+
+import { PluginMessageType } from '@/shared/enum';
 
 import { usePrevious } from '../hooks';
+import { postMessage } from '../lib/message';
 
 interface ContentContextValue {
   content: string;
@@ -28,6 +31,13 @@ export const ContentProvider = ({ children }: { children: React.ReactNode }) => 
   }, [prevContent]);
 
   const contextValue = useMemo(() => ({ content, setContent, setPrevContent }), [content, setPrevContent]);
+
+  useEffect(() => {
+    postMessage({
+      type: PluginMessageType.ON_CHANGE_CONTENT,
+      content,
+    });
+  }, [content]);
 
   return <ContentContext.Provider value={contextValue}>{children}</ContentContext.Provider>;
 };

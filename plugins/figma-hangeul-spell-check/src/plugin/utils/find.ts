@@ -14,3 +14,11 @@ export const findAllCharacters = (nodes: readonly SceneNode[]) => {
 
   return characters;
 };
+
+export function findAllCharactersInSelection() {
+  return findAllCharacters(figma.currentPage.selection);
+}
+
+export function findAllCharactersInPage() {
+  return findAllCharacters(figma.currentPage.children);
+}
