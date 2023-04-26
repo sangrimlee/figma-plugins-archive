@@ -16,7 +16,7 @@ const SpellCheckByLayer = () => {
     <div className="content-area">
       <div className="mb-4 flex flex-1 flex-col items-center justify-center">
         {characters.length === 0 ? (
-          <div className="space-y-2 text-sm">
+          <div className="space-y-2 text-sm font-medium">
             <div className="flex items-center justify-center">
               선택한
               <NodeBadge type="TEXT" />
@@ -57,7 +57,7 @@ const SpellCheckByPage = () => {
   return (
     <div className="content-area">
       <div className="mb-4 flex flex-1 flex-col items-center justify-center">
-        <div className="space-y-2 text-sm">
+        <div className="space-y-2 text-sm font-medium">
           <div className="flex items-center justify-center">
             현재 페이지의 모든
             <NodeBadge type="TEXT" />

@@ -25,7 +25,7 @@ export const SpellCheckResultItem = ({ spellCheckResult: { reason, origin, check
       <div className="mb-2 flex items-center font-bold">{reasonMessage[reason]}</div>
       <p className="mb-2">
         <span className="text-figma-text-danger line-through">{origin}</span>
-        <span className="text-figma-icon-secondary mx-2">
+        <span className="text-figma-icon-secondary mx-1">
           <ArrowRightIcon className="mb-1 inline-block" />
         </span>
         <span className="text-figma-text-brand">{checked}</span>
