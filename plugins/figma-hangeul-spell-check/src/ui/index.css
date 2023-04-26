@@ -10,6 +10,6 @@
 
 @layer components {
   .content-area {
-    @apply px-5;
+    @apply flex min-h-[calc(100vh-3rem)] flex-col justify-between px-4 pb-6;
   }
 }
