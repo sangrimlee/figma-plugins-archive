@@ -45,3 +45,17 @@ export function joinWithLimit(characters: string[], limit: number) {
 
   return joined;
 }
+
+export function removeDuplicate(results: SpellCheckResult[]) {
+  const set = new Set<string>();
+  const removed: SpellCheckResult[] = [];
+
+  for (const result of results) {
+    if (!set.has(result.origin)) {
+      removed.push(result);
+      set.add(result.origin);
+    }
+  }
+
+  return removed;
+}
