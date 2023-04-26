@@ -17,11 +17,12 @@ const LoadingIcon = () => {
 const buttonSizes = {
   sm: 'rounded py-1.5 px-2 text-xs min-h-[1.75rem]',
   md: 'rounded py-2 px-2.5 text-sm min-h-[2.25rem]',
-  lg: 'rounded-md py-2.5 px-3 text-base min-h-[2.75rem]',
+  lg: 'rounded-md py-2.5 px-3 text-sm min-h-[2.5rem]',
 };
 
 const buttonVariants = {
   brand: 'bg-figma-bg-brand text-figma-text-onbrand hover:bg-figma-bg-brand-hover',
+  secondary: 'bg-figma-bg-secondary text-figma-text-secondary ring-1 ring-figma-border hover:bg-figma-bg-tertiary',
 };
 
 interface ButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
