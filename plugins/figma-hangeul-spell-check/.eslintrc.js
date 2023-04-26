@@ -2,6 +2,9 @@
 module.exports = {
   root: true,
   extends: ['@sangrimlee/eslint-config/figma-plugin'],
+  rules: {
+    'no-restricted-syntax': 'off',
+  },
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
