@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-figma-bg text-figma-text antialiased;
+  }
+}
+
+@layer components {
+  .content-area {
+    @apply flex min-h-[calc(100vh-3rem)] flex-col justify-between px-4 pb-6;
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "name": "@sangrimlee/figma-hangeul-spell-check",
+  "version": "1.0.0",
+  "description": "한글 맞춤법 수정 Figma Plugin",
+  "license": "MIT",
+  "author": {
+    "name": "sangrimlee",
+    "email": "contact@sangrim.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sangrimlee/figma-plugins.git",
+    "directory": "plugins/figma-hangeul-spell-check"
+  },
+  "bugs": {
+    "url": "https://github.com/sangrimlee/figma-plugins/issues",
+    "email": "contact@sangrim.dev"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build:ui": "vite build -c ui.config.ts",
+    "build:plugin": "vite build -c plugin.config.ts",
+    "build": "concurrently 'pnpm:build:ui' 'pnpm:build:plugin'",
+    "predev": "rimraf dist",
+    "dev:ui": "pnpm build:ui --watch",
+    "dev:plugin": "pnpm build:plugin --watch",
+    "dev:server": "vite -c ui.config.ts",
+    "dev": "concurrently 'pnpm:dev:ui' 'pnpm:dev:plugin'",
+    "lint": "eslint --fix './src/**/*.ts*'",
+    "clean": "rimraf .turbo dist"
+  },
+  "dependencies": {
+    "@radix-ui/react-icons": "^1.2.0",
+    "@radix-ui/react-tabs": "^1.0.3",
+    "clsx": "^1.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.62.0",
+    "@sangrimlee/eslint-config": "workspace:*",
+    "@sangrimlee/tailwindcss-figma-color": "workspace:*",
+    "@sangrimlee/tsconfig": "workspace:*",
+    "@sangrimlee/vite-config": "workspace:*",
+    "@types/node": "^18.15.3",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react-swc": "^3.2.0",
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^7.6.0",
+    "eslint": "^8.36.0",
+    "postcss": "^8.4.21",
+    "rimraf": "^4.4.0",
+    "tailwindcss": "^3.2.7",
+    "typescript": "^4.9.5",
+    "vite": "^4.2.0",
+    "vite-plugin-singlefile": "^0.13.3",
+    "vite-tsconfig-paths": "^4.0.7"
+  }
+}

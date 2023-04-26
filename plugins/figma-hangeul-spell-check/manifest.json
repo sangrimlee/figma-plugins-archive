@@ -1,0 +1,9 @@
+{
+  "name": "한글맞춤",
+  "id": "1233034736208451985",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "main": "./dist/code.js",
+  "ui": "./dist/index.html",
+  "capabilities": ["textreview"]
+}
