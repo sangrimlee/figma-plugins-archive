@@ -3,9 +3,11 @@ import clsx from 'clsx';
 import { Button } from '../components/Button';
 import { SpellCheckResultItem } from '../components/SpellCheckResultItem';
 import { useContent } from '../context/ContentContext';
+import { useSpellCheck } from '../context/SpellCheckContext';
 
 export const SpellCheckResult = () => {
   const { setPrevContent } = useContent();
+  const { spellCheckResults } = useSpellCheck();
 
   return (
     <div>
@@ -13,8 +15,8 @@ export const SpellCheckResult = () => {
         <h1 className="font-bold">검사 결과</h1>
       </div>
       <ul className="space-y-4 px-4 pb-20">
-        {[1, 2, 3, 4, 5].map((v) => (
-          <SpellCheckResultItem key={v} />
+        {spellCheckResults.map((result) => (
+          <SpellCheckResultItem key={result.origin} spellCheckResult={result} />
         ))}
       </ul>
       <div

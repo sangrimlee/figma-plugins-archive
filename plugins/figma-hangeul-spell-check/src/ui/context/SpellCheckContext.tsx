@@ -1,10 +1,13 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import { PluginMessageType } from '@/shared/enum';
-import type { PluginMessageEvent } from '@/shared/types';
+import type { PluginMessageEvent, SpellCheckResult } from '@/shared/types';
 
 interface SpellCheckContextValue {
   characters: string[];
+  spellCheckResults: SpellCheckResult[];
+  setSpellCheckResults: React.Dispatch<React.SetStateAction<SpellCheckResult[]>>;
+  removeSpellCheckResult: (origin: string) => void;
 }
 
 const SpellCheckContext = createContext<SpellCheckContextValue | null>(null);
@@ -20,6 +23,16 @@ export const useSpellCheck = () => {
 
 export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) => {
   const [characters, setCharacters] = useState<string[]>([]);
+  const [spellCheckResults, setSpellCheckResults] = useState<SpellCheckResult[]>([]);
+
+  const removeSpellCheckResult = useCallback((origin: string) => {
+    setSpellCheckResults((prev) => prev.filter((result) => result.origin !== origin));
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({ characters, spellCheckResults, setSpellCheckResults, removeSpellCheckResult }),
+    [characters, spellCheckResults, removeSpellCheckResult],
+  );
 
   useEffect(() => {
     onmessage = ({ data: { pluginMessage: msg } }: PluginMessageEvent) => {
@@ -35,8 +48,6 @@ export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) 
       onmessage = null;
     };
   }, []);
-
-  const contextValue = useMemo(() => ({ characters }), [characters]);
 
   return <SpellCheckContext.Provider value={contextValue}>{children}</SpellCheckContext.Provider>;
 };

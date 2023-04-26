@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 
 import { PluginMessageType } from '@/shared/enum';
 
-import { usePrevious } from '../hooks';
+import { usePrevious } from '../hooks/usePrevious';
 import { postMessage } from '../lib/message';
 
 interface ContentContextValue {

@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { BoxIcon, LayersIcon } from '@radix-ui/react-icons';
 
 import { Button } from '../components/Button';
@@ -5,13 +6,11 @@ import { NodeBadge } from '../components/NodeBadge';
 import * as Tab from '../components/Tab';
 import { useContent } from '../context/ContentContext';
 import { useSpellCheck } from '../context/SpellCheckContext';
+import { useSpellCheckMutation } from '../hooks/useSpellCheckMutation';
 
 const SpellCheckByLayer = () => {
   const { characters } = useSpellCheck();
-  const { setContent } = useContent();
-  const checkAllLayer = () => {
-    setContent('result');
-  };
+  const { isLoading, mutateSpellCheck } = useSpellCheckMutation();
 
   return (
     <div className="content-area">
@@ -42,7 +41,9 @@ const SpellCheckByLayer = () => {
         size="md"
         variant="brand"
         fullWidth
-        onClick={checkAllLayer}
+        onClick={mutateSpellCheck}
+        disabled={characters.length === 0}
+        isLoading={isLoading}
       >
         검사하기
       </Button>
@@ -51,11 +52,8 @@ const SpellCheckByLayer = () => {
 };
 
 const SpellCheckByPage = () => {
-  const { setContent } = useContent();
+  const { isLoading, mutateSpellCheck } = useSpellCheckMutation();
 
-  const checkAllPage = () => {
-    setContent('result');
-  };
   return (
     <div className="content-area">
       <div className="mb-4 flex flex-1 flex-col items-center justify-center">
@@ -76,7 +74,8 @@ const SpellCheckByPage = () => {
         size="md"
         variant="brand"
         fullWidth
-        onClick={checkAllPage}
+        onClick={mutateSpellCheck}
+        isLoading={isLoading}
       >
         검사하기
       </Button>
