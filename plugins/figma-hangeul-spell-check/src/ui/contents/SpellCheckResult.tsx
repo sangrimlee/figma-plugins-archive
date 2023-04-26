@@ -1,9 +1,12 @@
 import clsx from 'clsx';
 
+import { PluginMessageType } from '@/shared/enum';
+
 import { Button } from '../components/Button';
 import { SpellCheckResultItem } from '../components/SpellCheckResultItem';
 import { useContent } from '../context/ContentContext';
 import { useSpellCheck } from '../context/SpellCheckContext';
+import { postMessage } from '../lib/message';
 
 const SpellCheckResultList = () => {
   const { spellCheckResults } = useSpellCheck();
@@ -21,6 +24,13 @@ export const SpellCheckResult = () => {
   const { setPrevContent } = useContent();
   const { spellCheckResults } = useSpellCheck();
 
+  const replaceAllSpellCheck = () => {
+    postMessage({
+      type: PluginMessageType.REPLACE_SPELL_CHECK,
+      results: spellCheckResults,
+    });
+  };
+
   return (
     <div>
       <div className="flex h-12 items-center p-4">
@@ -37,7 +47,7 @@ export const SpellCheckResult = () => {
           'bg-figma-bg border-figma-border ',
         )}
       >
-        <Button variant="brand" size="md" disabled={spellCheckResults.length === 0}>
+        <Button variant="brand" size="md" disabled={spellCheckResults.length === 0} onClick={replaceAllSpellCheck}>
           모두 수정
         </Button>
         <Button variant="secondary" size="md" onClick={setPrevContent}>

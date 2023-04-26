@@ -1,24 +1,16 @@
 import { isTextNode } from './check-node';
 import { visit } from './visit';
 
-export const findAllCharacters = (nodes: readonly SceneNode[]) => {
-  const characters = [];
+export const findAllTextNodes = (nodes: readonly SceneNode[]) => {
+  const textNodes = [];
 
   for (const rootNode of nodes) {
     for (const node of visit(rootNode)) {
       if (isTextNode(node)) {
-        characters.push(node.characters);
+        textNodes.push(node);
       }
     }
   }
 
-  return characters;
+  return textNodes;
 };
-
-export function findAllCharactersInSelection() {
-  return findAllCharacters(figma.currentPage.selection);
-}
-
-export function findAllCharactersInPage() {
-  return findAllCharacters(figma.currentPage.children);
-}

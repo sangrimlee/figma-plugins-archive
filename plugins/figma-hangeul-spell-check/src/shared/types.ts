@@ -14,6 +14,10 @@ export type PluginMessage =
   | {
       type: PluginMessageType.ON_CHANGE_CONTENT;
       content: string;
+    }
+  | {
+      type: PluginMessageType.REPLACE_SPELL_CHECK;
+      results: SpellCheckResult[];
     };
 
 export type PluginMessageEvent = MessageEvent<{ pluginMessage: PluginMessage; pluginId: string }>;

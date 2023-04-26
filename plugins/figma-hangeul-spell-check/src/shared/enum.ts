@@ -8,4 +8,5 @@ export enum SpellCheckReason {
 export enum PluginMessageType {
   SET_CHARACTERS = 'SET_CHARACTERS',
   ON_CHANGE_CONTENT = 'ON_CHANGE_CONTENT',
+  REPLACE_SPELL_CHECK = 'REPLACE_SPELL_CHECK',
 }
