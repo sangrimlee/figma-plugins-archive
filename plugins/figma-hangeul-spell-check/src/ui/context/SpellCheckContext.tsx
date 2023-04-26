@@ -24,7 +24,7 @@ export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     onmessage = ({ data: { pluginMessage: msg } }: PluginMessageEvent) => {
       switch (msg.type) {
-        case PluginMessageType.ON_CHANGE_SELECTION:
+        case PluginMessageType.SET_CHARACTERS:
           setCharacters(msg.characters);
           break;
         default:
