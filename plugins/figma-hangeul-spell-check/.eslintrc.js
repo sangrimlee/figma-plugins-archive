@@ -4,6 +4,7 @@ module.exports = {
   extends: ['@sangrimlee/eslint-config/figma-plugin'],
   rules: {
     'no-restricted-syntax': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
   },
   parserOptions: {
     tsconfigRootDir: __dirname,
