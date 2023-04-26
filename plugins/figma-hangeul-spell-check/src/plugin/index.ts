@@ -1,10 +1,8 @@
 import manifest from '../../manifest.json';
-import { findAllTextNode } from './utils/find';
+import { onChangeSelectionHandler } from './lib/handlers';
 
-figma.showUI(__html__, { title: manifest.name, themeColors: true, width: 440, height: 440 });
+figma.skipInvisibleInstanceChildren = true;
 
-figma.on('selectionchange', () => {
-  const { selection } = figma.currentPage;
-  const textNodes = findAllTextNode(selection);
-  console.log(textNodes);
-});
+figma.showUI(__html__, { title: manifest.name, themeColors: true, width: 384, height: 448 });
+
+figma.on('selectionchange', onChangeSelectionHandler);

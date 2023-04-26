@@ -4,10 +4,11 @@ import { Button } from '../components/Button';
 import { NodeBadge } from '../components/NodeBadge';
 import * as Tab from '../components/Tab';
 import { useContent } from '../context/ContentContext';
+import { useSpellCheck } from '../context/SpellCheckContext';
 
 const SpellCheckByLayer = () => {
+  const { characters } = useSpellCheck();
   const { setContent } = useContent();
-
   const checkAllLayer = () => {
     setContent('result');
   };
@@ -15,16 +16,25 @@ const SpellCheckByLayer = () => {
   return (
     <div className="content-area">
       <div className="mb-4 flex flex-1 flex-col items-center justify-center">
-        <div className="space-y-2 text-sm">
-          <div className="flex items-center justify-center">
-            선택한
-            <NodeBadge type="TEXT" />
-            <NodeBadge type="FRAME" />
+        {characters.length === 0 ? (
+          <div className="space-y-2 text-sm">
+            <div className="flex items-center justify-center">
+              선택한
+              <NodeBadge type="TEXT" />
+              <NodeBadge type="FRAME" />
+            </div>
+            <div className="flex items-center justify-center">
+              <NodeBadge type="GROUP" />에 대해서 맞춤법 검사를 실행합니다.
+            </div>
           </div>
-          <div className="flex items-center justify-center">
-            <NodeBadge type="GROUP" />에 대해서 맞춤법 검사를 실행합니다.
+        ) : (
+          <div className="space-y-2 text-sm">
+            <div className="flex items-center justify-center">
+              {characters.length}개의
+              <NodeBadge type="TEXT" />가 선택되었습니다.
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <Button
         type="button"
