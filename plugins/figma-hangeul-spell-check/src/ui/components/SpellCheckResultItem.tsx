@@ -34,10 +34,10 @@ export const SpellCheckResultItem = ({ spellCheckResult }: SpellCheckResultItemP
   const { label, color } = reasonMessage[spellCheckResult.reason];
 
   return (
-    <div className="border-figma-border relative rounded-md border py-3 px-6">
+    <div className="border-figma-border relative rounded-md border px-6 pt-3 pb-4">
       <div className="relative mb-2 flex items-center">
         <div className="absolute right-full mr-1">
-          <DotFilledIcon className={clsx('h-3 w-3', color)} />
+          <DotFilledIcon className={clsx('h-3.5 w-3.5', color)} />
         </div>
         <span className="text-figma-text-secondary text-xs">{label}</span>
       </div>
@@ -52,11 +52,11 @@ export const SpellCheckResultItem = ({ spellCheckResult }: SpellCheckResultItemP
             {spellCheckResult.origin}
           </span>
           <span className="text-figma-icon-secondary">
-            <ArrowRightIcon className="ml-1.5 mb-0.5 inline-block h-4 w-4" />
+            <ArrowRightIcon className="ml-1 mb-0.5 inline-block h-4 w-4" />
           </span>
         </p>
         <p className="text-sm font-semibold">
-          <span className="bg-figma-bg-brand text-figma-text-onbrand inline-flex items-center rounded px-1.5 py-0.5">
+          <span className="bg-figma-bg-brand text-figma-text-onbrand inline-flex items-center rounded px-2 py-1">
             {spellCheckResult.checked}
           </span>
         </p>

@@ -33,8 +33,8 @@ export const SpellCheckResult = () => {
 
   return (
     <div>
-      <div className="flex h-12 items-center p-4">
-        <h1 className="font-bold">검사 결과</h1>
+      <div className="mt-3 mb-2.5 px-4">
+        <h1 className="font-bold tracking-tight">검사 결과</h1>
       </div>
       {spellCheckResults.length === 0 ? (
         <div className="mt-32 flex justify-center font-medium">수정할 내용이 없습니다.</div>
