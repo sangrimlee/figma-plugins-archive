@@ -4,6 +4,7 @@ import { PluginMessageType } from '@/shared/enum';
 import type { PluginMessageEvent, SpellCheckResult } from '@/shared/types';
 
 import { useContent } from './ContentContext';
+import { useToast } from './ToastContext';
 
 interface SpellCheckContextValue {
   characters: string[];
@@ -24,6 +25,7 @@ export const useSpellCheck = () => {
 };
 
 export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) => {
+  const toast = useToast();
   const { setPrevContent } = useContent();
   const [characters, setCharacters] = useState<string[]>([]);
   const [spellCheckResults, setSpellCheckResults] = useState<SpellCheckResult[]>([]);
@@ -45,6 +47,10 @@ export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) 
           break;
         case PluginMessageType.REPLACE_SPELL_CHECK_SUCCESS:
           setPrevContent();
+          toast({
+            type: 'success',
+            title: '맞춤법에 맞게 모두 수정되었습니다.',
+          });
           break;
         default:
           break;
@@ -53,7 +59,7 @@ export const SpellCheckProvider = ({ children }: { children: React.ReactNode }) 
     return () => {
       onmessage = null;
     };
-  }, [setPrevContent]);
+  }, [toast, setPrevContent]);
 
   return <SpellCheckContext.Provider value={contextValue}>{children}</SpellCheckContext.Provider>;
 };
