@@ -1,3 +1,4 @@
+import { CheckCircledIcon } from '@radix-ui/react-icons';
 import clsx from 'clsx';
 
 import { PluginMessageType } from '@/shared/enum';
@@ -33,11 +34,21 @@ export const SpellCheckResult = () => {
 
   return (
     <div>
-      <div className="flex h-12 items-center p-4">
-        <h1 className="font-bold">검사 결과</h1>
+      <div className="mt-3 mb-2.5 px-4">
+        <h1 className="font-bold tracking-tight">검사 결과</h1>
       </div>
       {spellCheckResults.length === 0 ? (
-        <div className="mt-32 flex justify-center font-medium">수정할 내용이 없습니다.</div>
+        <div className="mt-10 flex justify-center">
+          <div
+            className={clsx(
+              'flex items-center rounded-md py-1.5 px-2.5',
+              'bg-figma-bg-success-tertiary text-figma-text-success',
+            )}
+          >
+            <CheckCircledIcon className="mr-1 h-4 w-4" />
+            <div className="text-sm font-medium">수정할 내용이 없습니다.</div>
+          </div>
+        </div>
       ) : (
         <SpellCheckResultList />
       )}

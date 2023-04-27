@@ -16,7 +16,7 @@ const LoadingIcon = () => {
 
 const buttonSizes = {
   sm: 'rounded py-1.5 px-2 text-xs min-h-[1.75rem]',
-  md: 'rounded py-2 px-2.5 text-sm min-h-[2.25rem]',
+  md: 'rounded py-1.5 px-2.5 text-sm min-h-[2rem]',
   lg: 'rounded-md py-2.5 px-3 text-sm min-h-[2.5rem]',
 };
 

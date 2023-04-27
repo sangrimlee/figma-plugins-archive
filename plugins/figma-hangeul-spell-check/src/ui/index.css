@@ -13,3 +13,18 @@
     @apply flex min-h-[calc(100vh-3rem)] flex-col justify-between px-4 pb-6;
   }
 }
+
+@layer utilities {
+  .wrong-red {
+    color: #eb4137;
+  }
+  .wrong-yellow {
+    color: #f4d053;
+  }
+  .wrong-blue {
+    color: #4d8bf7;
+  }
+  .wrong-purple {
+    color: #8c38f0;
+  }
+}
