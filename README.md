@@ -2,6 +2,8 @@
 
 [![Figma Badge](https://img.shields.io/badge/Figma-%40sangrimlee-blueviolet?labelColor=24292E)](https://figma.com/@sangrimlee) [![CI Badge](https://github.com/sangrimlee/figma-plugins/actions/workflows/ci.yml/badge.svg)](https://github.com/sangrimlee/figma-plugins/actions?query=workflow:ci)
 
+![figma-plugin](https://user-images.githubusercontent.com/56021431/235989478-bed98a9f-8b05-400e-84b7-74b6353d1d0d.png)
+
 ## Plugins
 
 | 이름                                                                   | 설명                        | 링크                                                                                                                                    |
@@ -16,6 +18,6 @@
 - **Build**: [Vite](https://vitejs.dev/), [tsup](https://tsup.egoist.dev/)
 - **Other**: [pnpm](https://pnpm.io), [turborepo](https://turbo.build)
 
-## See Also
+## Internal packages
 
 - [tailwindcss-figma-color](./packages/tailwindcss-figma-color/README.md): Tailwind CSS Plugin for Figma Plugin color tokens.
