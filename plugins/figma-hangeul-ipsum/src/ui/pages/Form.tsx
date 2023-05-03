@@ -38,8 +38,8 @@ const Form = () => {
   };
 
   return (
-    <div className="flex h-full w-full flex-col justify-between py-5 text-sm">
-      <div className="flex flex-col gap-y-6">
+    <div className="flex h-full w-full flex-col justify-between py-4 text-sm">
+      <div className="space-y-7">
         <div>
           <h2 className="mb-1.5 font-semibold">텍스트 소스</h2>
           <Select.Root name="generate-source" value={formState.source} onValueChange={(v) => setFormState('source', v)}>
