@@ -10,6 +10,7 @@ export async function handleInitMessage() {
     unit: 'word',
     count: '1',
     source: 'countingStars',
+    type: 'replace',
   });
   const isSelectedTextNode = getIsSelectedTextNode();
   postPluginMessage({
@@ -25,7 +26,7 @@ export function handleOnChangeFormStateMessage(formState: GenerateFormState) {
 
 export function handleChangeTextNodeContentMessage(formState: GenerateFormState) {
   const content = generateContent(formState);
-  return Promise.all(getSelectedTextNode().map((textNode) => changeTextNodeContent(textNode, content)));
+  return Promise.all(getSelectedTextNode().map((textNode) => changeTextNodeContent(textNode, content, formState)));
 }
 
 export function handleChangeSelection() {

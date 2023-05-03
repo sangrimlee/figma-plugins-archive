@@ -44,7 +44,9 @@ const Form = () => {
           <h2 className="mb-1.5 font-semibold">텍스트 소스</h2>
           <Select.Root name="generate-source" value={formState.source} onValueChange={(v) => setFormState('source', v)}>
             {GENERATE_SOURCES.map(({ value, label }) => (
-              <Select.Item value={value}>{label}</Select.Item>
+              <Select.Item key={value} value={value}>
+                {label}
+              </Select.Item>
             ))}
           </Select.Root>
         </div>
@@ -52,7 +54,7 @@ const Form = () => {
           <h2 className="mb-2 font-semibold">생성 단위</h2>
           <RadioGroup.Root name="generate-unit" value={formState.unit} onValueChange={(v) => setFormState('unit', v)}>
             {GENREATE_UNITS.map(({ value, label }) => (
-              <RadioGroup.Item value={value} label={label} />
+              <RadioGroup.Item key={value} value={value} label={label} />
             ))}
           </RadioGroup.Root>
         </div>
@@ -64,8 +66,15 @@ const Form = () => {
             onValueChange={(v) => setFormState('count', v)}
           >
             {GENERATE_COUNTS.map(({ value, label }) => (
-              <RadioGroup.Item value={value} label={label} />
+              <RadioGroup.Item key={value} value={value} label={label} />
             ))}
+          </RadioGroup.Root>
+        </div>
+        <div>
+          <h2 className="mb-2 font-semibold">생성 방식</h2>
+          <RadioGroup.Root name="generate-type" value={formState.type} onValueChange={(v) => setFormState('type', v)}>
+            <RadioGroup.Item value="replace" label="덮어쓰기" />
+            <RadioGroup.Item value="join" label="이어붙이기" />
           </RadioGroup.Root>
         </div>
       </div>

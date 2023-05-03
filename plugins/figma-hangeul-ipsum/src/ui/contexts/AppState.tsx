@@ -31,6 +31,7 @@ export const AppStateProvider = ({ children }: AppStateProviderProps) => {
     unit: 'word',
     count: '1',
     source: 'countingStars',
+    type: 'replace',
   });
 
   const setFormState = useCallback(<K extends keyof GenerateFormState>(key: K, value: GenerateFormState[K]) => {
