@@ -4,6 +4,7 @@ export interface GenerateFormState {
   unit: string;
   count: string;
   source: string;
+  type: string;
 }
 
 export type PluginMessage =
