@@ -10,7 +10,7 @@ interface SelectRootProps {
 
 export const Root = ({ children, name, value, onValueChange }: SelectRootProps) => (
   <SelectPrimitive.Root name={name} value={value} onValueChange={onValueChange}>
-    <SelectPrimitive.Trigger className="border-figma-border focus:outline-non focus:fill-figma-border-selected flex w-full items-center justify-between rounded-md border p-3">
+    <SelectPrimitive.Trigger className="border-figma-border focus:outline-non focus:fill-figma-border-selected flex w-full items-center justify-between rounded-md border p-3 text-sm">
       <SelectPrimitive.Value />
       <SelectPrimitive.Icon>
         <ChevronDownIcon className="h-4 w-4" />
@@ -39,7 +39,7 @@ export const Item = ({ children, value }: SelectItemProps) => {
   return (
     <SelectPrimitive.Item
       value={value}
-      className="data-[state=checked]:bg-figma-bg-selected hover:bg-figma-bg-selected flex cursor-pointer items-center justify-between rounded-md p-2.5 outline-none"
+      className="data-[state=checked]:bg-figma-bg-selected hover:bg-figma-bg-selected flex cursor-pointer items-center justify-between rounded-md p-2.5 text-sm outline-none"
     >
       <SelectPrimitive.ItemText asChild>
         <span className="leading-none">{children}</span>
