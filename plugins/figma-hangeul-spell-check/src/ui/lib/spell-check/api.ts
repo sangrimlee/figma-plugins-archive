@@ -9,7 +9,7 @@ interface SpellCheckResult {
 
 interface SpellCheckResponse {
   message: {
-    error: string;
+    error?: string;
     result: SpellCheckResult;
   };
 }
@@ -21,7 +21,7 @@ export async function requestSpellCheck(query: string, passportKey: string) {
   url.searchParams.append('passportKey', passportKey);
   url.searchParams.append('where', 'nexearch');
 
-  const res = await fetch(url, { method: 'GET', headers: { referer: 'https://m.search.naver.com' } });
+  const res = await fetch(url, { method: 'GET' });
 
   if (!res.ok) {
     throw new Error('NETWORK_REQUEST_FAILED');
@@ -34,8 +34,8 @@ export async function requestSpellCheck(query: string, passportKey: string) {
     },
   } = (await res.json()) as SpellCheckResponse;
 
-  if (error === '유효한 키가 아닙니다') {
-    throw new Error('INVALID_KEY');
+  if (error) {
+    throw new Error(error);
   }
 
   return getSpellCheckeResult(origin, result);
@@ -47,7 +47,6 @@ export async function requestPassportKey() {
   const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url.toString())}`;
   const res = await fetch(proxyUrl, {
     method: 'GET',
-    headers: { referer: 'https://search.naver.com' },
   });
 
   if (!res.ok) {
