@@ -1,25 +1,58 @@
+import { httpRequest } from './api.utils';
 import { getSpellCheckeResult } from './utils';
 
-interface SpellCheckResponse {
+interface SpellCheckResult {
   errata_count: number;
   origin_html: string;
   html: string;
   notag_html: string;
 }
 
-export async function requestSpellCheck(query: string) {
-  const url = new URL('https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy?color_blindness=0');
-  url.searchParams.append('q', query);
-  const res = await fetch(url, { method: 'GET', headers: { referer: 'https://m.search.naver.com' } });
+interface SpellCheckResponse {
+  message: {
+    error?: string;
+    result: SpellCheckResult;
+  };
+}
 
-  if (!res.ok) {
-    throw Error('네트워크 요청에 실패하였습니다.');
-  }
+export async function requestSpellCheck(q: string, passportKey: string) {
+  const res = await httpRequest('https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy', {
+    method: 'GET',
+    params: {
+      q,
+      passportKey,
+      color_blindness: 0,
+    },
+  });
 
   const {
     message: {
+      error,
       result: { origin_html: origin, html: result },
     },
-  } = (await res.json()) as { message: { result: SpellCheckResponse } };
+  } = (await res.json()) as SpellCheckResponse;
+
+  if (error) {
+    throw new Error(error);
+  }
+
   return getSpellCheckeResult(origin, result);
+}
+
+export async function requestPassportKey() {
+  const res = await httpRequest('https://search.naver.com/search.naver', {
+    method: 'GET',
+    proxy: true,
+    params: {
+      query: '맞춤법검사',
+    },
+  });
+
+  const html = await res.text();
+  const matched = /passportKey=([a-zA-Z0-9]+)/.exec(html);
+  if (!matched) {
+    throw new Error('CAN_NOT_FIND_PASSPORT_KEY');
+  }
+
+  return matched[1];
 }
