@@ -59,16 +59,3 @@ export function removeDuplicate(results: SpellCheckResult[]) {
 
   return removed;
 }
-
-export function wait(ms: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
-
-export function retry<R>(fetchFn: () => Promise<R>, retries: number, delayMs = 500): Promise<R> {
-  if (retries === 0) {
-    throw new Error('RETRY_EXCEED');
-  }
-  return fetchFn().catch(() => wait(delayMs).then(() => retry(fetchFn, retries - 1, delayMs)));
-}

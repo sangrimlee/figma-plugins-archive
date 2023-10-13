@@ -1,3 +1,4 @@
+import { httpRequest } from './api.utils';
 import { getSpellCheckeResult } from './utils';
 
 interface SpellCheckResult {
@@ -14,18 +15,15 @@ interface SpellCheckResponse {
   };
 }
 
-export async function requestSpellCheck(query: string, passportKey: string) {
-  const url = new URL('https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy');
-  url.searchParams.append('q', query);
-  url.searchParams.append('color_blindness', '0');
-  url.searchParams.append('passportKey', passportKey);
-  url.searchParams.append('where', 'nexearch');
-
-  const res = await fetch(url, { method: 'GET' });
-
-  if (!res.ok) {
-    throw new Error('NETWORK_REQUEST_FAILED');
-  }
+export async function requestSpellCheck(q: string, passportKey: string) {
+  const res = await httpRequest('https://m.search.naver.com/p/csearch/ocontent/util/SpellerProxy', {
+    method: 'GET',
+    params: {
+      q,
+      passportKey,
+      color_blindness: 0,
+    },
+  });
 
   const {
     message: {
@@ -42,21 +40,19 @@ export async function requestSpellCheck(query: string, passportKey: string) {
 }
 
 export async function requestPassportKey() {
-  const url = new URL('https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8');
-  url.searchParams.set('query', '맞춤법검사');
-  const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url.toString())}`;
-  const res = await fetch(proxyUrl, {
+  const res = await httpRequest('https://search.naver.com/search.naver', {
     method: 'GET',
+    proxy: true,
+    params: {
+      query: '맞춤법검사',
+    },
   });
-
-  if (!res.ok) {
-    throw new Error('NETWORK_REQUEST_FAILED');
-  }
 
   const html = await res.text();
   const matched = /passportKey=([a-zA-Z0-9]+)/.exec(html);
   if (!matched) {
     throw new Error('CAN_NOT_FIND_PASSPORT_KEY');
   }
+
   return matched[1];
 }

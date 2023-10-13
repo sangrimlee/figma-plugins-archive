@@ -1,5 +1,6 @@
 import { requestPassportKey, requestSpellCheck } from './api';
-import { joinWithLimit, removeDuplicate, retry } from './utils';
+import { retry } from './api.utils';
+import { joinWithLimit, removeDuplicate } from './utils';
 
 export async function spellCheck(characters: string[]) {
   const queries = joinWithLimit(characters, 300);
