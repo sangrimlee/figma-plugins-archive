@@ -43,6 +43,16 @@ export function onChangePageHandler() {
   }
   handleSetCharacters(figma.currentPage.children);
 }
+export function onChangeDocumentHandler() {
+  switch (GLOBAL_CONTEXT.content) {
+    case 'page':
+      return onChangePageHandler();
+    case 'layer':
+      return onChangeSelectionHandler();
+    default:
+      return undefined;
+  }
+}
 
 export function onChangeContentHandler(content: string) {
   GLOBAL_CONTEXT.content = content;
