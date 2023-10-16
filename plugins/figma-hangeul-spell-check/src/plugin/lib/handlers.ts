@@ -5,9 +5,14 @@ import { findAllTextNodes } from '../utils/find';
 import { postPluginMessage } from '../utils/post-message';
 import { replaceNodeCharacter } from '../utils/replace';
 
-const GLOBAL_CONTEXT = {
+interface GlobalContext {
+  content: string;
+  textNodes: TextNode[];
+}
+
+const GLOBAL_CONTEXT: GlobalContext = {
   content: 'page',
-  textNodes: [] as TextNode[],
+  textNodes: [],
 };
 
 export function handleSetCharacters(nodes: readonly SceneNode[]) {
