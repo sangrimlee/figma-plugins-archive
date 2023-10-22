@@ -5,9 +5,14 @@ import { findAllTextNodes } from '../utils/find';
 import { postPluginMessage } from '../utils/post-message';
 import { replaceNodeCharacter } from '../utils/replace';
 
-const GLOBAL_CONTEXT = {
+interface GlobalContext {
+  content: string;
+  textNodes: TextNode[];
+}
+
+const GLOBAL_CONTEXT: GlobalContext = {
   content: 'page',
-  textNodes: [] as TextNode[],
+  textNodes: [],
 };
 
 export function handleSetCharacters(nodes: readonly SceneNode[]) {
@@ -42,6 +47,16 @@ export function onChangePageHandler() {
     return;
   }
   handleSetCharacters(figma.currentPage.children);
+}
+export function onChangeDocumentHandler() {
+  switch (GLOBAL_CONTEXT.content) {
+    case 'page':
+      return onChangePageHandler();
+    case 'layer':
+      return onChangeSelectionHandler();
+    default:
+      return undefined;
+  }
 }
 
 export function onChangeContentHandler(content: string) {
